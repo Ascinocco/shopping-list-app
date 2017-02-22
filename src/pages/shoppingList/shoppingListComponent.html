@@ -8,87 +8,127 @@
 
 <ion-content padding>
   <!-- Add card begin -->
-  <ion-col width-33>
-    <ion-card>
-      <ion-card-header text-center>
-        <h3>Create Shopping List</h3>
-      </ion-card-header>
+  <ion-row>
+    <ion-col width-75>
+      <ion-card>
+        <ion-card-header text-center>
+          <h3>Create Shopping List</h3>
+        </ion-card-header>
 
-      <ion-card-content>
-        <ion-row>
-          <ion-card>
-            <ion-col width-90>
-              <ion-input type="text" [(ngModel)]="newShoppingList.title" placeholder="Add Title"></ion-input>
-            </ion-col>
-          </ion-card>
-        </ion-row>
-        <ion-row>
-          <ion-card>
-            <ion-row>
-              <ion-col width-33>
-                <ion-input type="text" [(ngModel)]="newItem.name" placeholder="Item Name"></ion-input>
+        <ion-card-content>
+          <ion-row>
+            <ion-card>
+              <ion-col width-90>
+                <ion-input type="text" [(ngModel)]="newShoppingList.title" placeholder="Add Title"></ion-input>
               </ion-col>
-              <ion-col width-33>
-                <ion-input type="number" [(ngModel)]="newItem.quantity" placeholder="Quantity" min="0"></ion-input>
-              </ion-col>
-              <ion-col width-33>
-                <ion-buttons end>
-                  <button ion-button (click)="storeTempShoppingListItem()">
-                    <ion-icon name="add"></ion-icon>
-                  </button>
-                </ion-buttons>
-              </ion-col>
-            </ion-row>
-          </ion-card>
-        </ion-row>
-
-        <ion-row *ngFor="let tempItem of newShoppingList.items">
-          <ion-card>
-            <ion-card-content>
+            </ion-card>
+          </ion-row>
+          <ion-row>
+            <ion-card>
               <ion-row>
                 <ion-col width-33>
-                  <ion-label>{{ tempItem.name }}</ion-label>
+                  <ion-input type="text" [(ngModel)]="newItem.name" placeholder="Item Name"></ion-input>
                 </ion-col>
                 <ion-col width-33>
-                  <ion-input type="number" [(ngModel)]="tempItem.quantity" placeholder="Quantity" min="0"></ion-input>
-                </ion-col>
-              </ion-row>
-            </ion-card-content>
-          </ion-card>
-        </ion-row>
-
-        <ion-row>
-          <ion-card>
-            <ion-card-content>
-              <ion-row>
-                <ion-col width-33>
-                  <ion-buttons>
-                    <button ion-button color="success" (click)="createShoppingList()">
-                      <ion-icon name="checkmark-circle"></ion-icon>
-                    </button>
-                  </ion-buttons>
-                </ion-col>
-                <ion-col width-33>
-                  <!-- Needed spacing between my columns -->
+                  <ion-input type="number" [(ngModel)]="newItem.quantity" placeholder="Quantity" min="0"></ion-input>
                 </ion-col>
                 <ion-col width-33>
                   <ion-buttons end>
-                    <button ion-button color="danger" (click)="resetShoppingList()">
-                      <ion-icon name="close-circle"></ion-icon>
-                    </button>
+                    <button ion-button (click)="storeTempShoppingListItem()">
+                    <ion-icon name="add"></ion-icon>
+                  </button>
                   </ion-buttons>
                 </ion-col>
               </ion-row>
-            </ion-card-content>
-          </ion-card>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-  </ion-col>
+            </ion-card>
+          </ion-row>
 
-  <ion-col width-33 *ngFor="let list of shoppingLists | async">
-    <ion-label>{{ list.title }}</ion-label>
-  </ion-col>
+          <ion-row *ngFor="let tempItem of newShoppingList.items">
+            <ion-card>
+              <ion-card-content>
+                <ion-row>
+                  <ion-col width-33>
+                    <ion-label>{{ tempItem.name }}</ion-label>
+                  </ion-col>
+                  <ion-col width-33>
+                    <ion-input type="number" [(ngModel)]="tempItem.quantity" placeholder="Quantity" min="0"></ion-input>
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-row>
+
+          <ion-row>
+            <ion-card>
+                <ion-row>
+                  <ion-col width-33>
+                    <ion-buttons>
+                      <button ion-button color="success" (click)="createShoppingList()">
+                      <ion-icon name="checkmark-circle"></ion-icon>
+                    </button>
+                    </ion-buttons>
+                  </ion-col>
+                  <ion-col width-33>
+                    <!-- Needed spacing between my columns -->
+                  </ion-col>
+                  <ion-col width-33>
+                    <ion-buttons end>
+                      <button ion-button color="danger" (click)="resetShoppingList()">
+                      <ion-icon name="close-circle"></ion-icon>
+                    </button>
+                    </ion-buttons>
+                  </ion-col>
+                </ion-row>
+            </ion-card>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col width-75>
+      <ion-row *ngFor="let list of shoppingLists | async">
+        <ion-card>
+          <ion-card-header text-center>
+            <h3>{{ list.title }}</h3>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-card *ngFor="let listItem of list.items">
+              <ion-row>
+                <ion-col width-33>
+                  <ion-label>{{ listItem.name }}</ion-label>
+                </ion-col>
+                <ion-col width-33>
+                  <ion-input type="number" [(ngModel)]="listItem.quantity" placeholder="Quantity" min="0"></ion-input>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+
+            <ion-row>
+              <ion-card>
+                  <ion-row>
+                    <ion-col width-33>
+                      <ion-buttons>
+                        <button ion-button color="success" (click)="updateShoppingList(list)">update</button>
+                      </ion-buttons>
+                    </ion-col>
+                    <ion-col width-33>
+                      <!-- Needed spacing between my columns -->
+                    </ion-col>
+                    <ion-col width-33>
+                      <ion-buttons end>
+                        <button ion-button color="danger" (click)="deleteShoppingList(list)">delete</button>
+                      </ion-buttons>
+                    </ion-col>
+                  </ion-row>
+              </ion-card>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-row>
+    </ion-col>
+  </ion-row>
 
 
 </ion-content>
