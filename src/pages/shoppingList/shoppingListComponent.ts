@@ -19,6 +19,13 @@ export class ShoppingListComponent
     this.newItem              = { name: "", quantity: "" };
   }
 
+
+  public storeTempShoppingListItem()
+  {
+    this.newShoppingList.items.push(this.newItem);
+    this.newItem = { name: "", quantity: ""};
+  }
+
   /** ******************** Shopping list crud ******************** **/
 
   public createShoppingList()
