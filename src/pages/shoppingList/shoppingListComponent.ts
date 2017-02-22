@@ -32,6 +32,12 @@ export class ShoppingListComponent
     this.newItem         = { name: "", quantity: "" };
   }
 
+  public deleteShoppingListItem(list, listItem)
+  {
+    delete list[listItem];
+    this.shoppingLists.update(list.$key, list);
+  }
+
   /** ******************** Shopping list crud ******************** **/
 
   public createShoppingList()

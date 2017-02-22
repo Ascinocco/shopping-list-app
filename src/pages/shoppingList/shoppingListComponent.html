@@ -102,6 +102,13 @@
                 <ion-col width-33>
                   <ion-input type="number" [(ngModel)]="listItem.quantity" placeholder="Quantity" min="0"></ion-input>
                 </ion-col>
+                <ion-col width-33>
+                  <ion-buttons end>
+                    <button ion-button color="danger" (click)="deleteShoppingListItem(list, listItem)">
+                      <ion-icon name="close-circle"></ion-icon>
+                    </button>
+                  </ion-buttons>
+                </ion-col>
               </ion-row>
             </ion-card>
 
