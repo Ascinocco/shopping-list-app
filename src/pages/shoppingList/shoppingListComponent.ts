@@ -9,28 +9,26 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 export class ShoppingListComponent
 {
   public shoppingLists:         FirebaseListObservable<any[]>
-  public newShoppingListTitle:  string;
-  public newShoppingListItem:   string;
+  public newShoppingList:       any;
 
   constructor(public navCtrl: NavController, af: AngularFire)
   {
     this.shoppingLists        = af.database.list('/shoppingLists');
-    this.newShoppingListTitle = "";
-    this.newShoppingListItem  = "";
+    this.newShoppingList      = { title: "", items: [] };
   }
 
   /** ******************** Shopping list crud ******************** **/
 
   public createShoppingList()
   {
-    if (this.newShoppingListTitle.length > 0) {
+    if (this.newShoppingList.title.length > 0) {
       let newShoppingList = {
-        title: this.newShoppingListTitle,
-        items: []
+        title: this.newShoppingList.title,
+        items: this.newShoppingList.items
       }
 
       this.shoppingLists.push(newShoppingList);
-      this.newShoppingListTitle = "";
+      this.newShoppingList = { title: "", items: [] };
 
     } else {
       alert("Your shopping list must have a name!");
@@ -49,5 +47,5 @@ export class ShoppingListComponent
   {
     this.shoppingLists.remove(shoppingList);
   }
-  
+
 }
