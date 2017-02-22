@@ -10,11 +10,13 @@ export class ShoppingListComponent
 {
   public shoppingLists:         FirebaseListObservable<any[]>
   public newShoppingList:       any;
+  public newItem:               any;
 
   constructor(public navCtrl: NavController, af: AngularFire)
   {
     this.shoppingLists        = af.database.list('/shoppingLists');
     this.newShoppingList      = { title: "", items: [] };
+    this.newItem              = { name: "", quantity: "" };
   }
 
   /** ******************** Shopping list crud ******************** **/

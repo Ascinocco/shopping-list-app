@@ -7,5 +7,42 @@
 </ion-header>
 
 <ion-content padding>
-  Testo
+  <!-- Add card begin -->
+  <ion-col width-33>
+    <ion-card>
+      <ion-card-header text-center>
+        <h3>Create Shopping List</h3>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-row>
+          <ion-card>
+            <ion-col width-90>
+              <ion-input type="text" [(ngModel)]="newShoppingList.title" placeholder="Add Title"></ion-input>
+            </ion-col>
+          </ion-card>
+        </ion-row>
+        <ion-row>
+          <ion-card>
+            <ion-row>
+              <ion-col width-33>
+                <ion-input type="text" [(ngModel)]="newItem.name" placeholder="Item Name"></ion-input>
+              </ion-col>
+              <ion-col width-33>
+                <ion-input type="number" [(ngModel)]="newItem.quantity" placeholder="Quantity"></ion-input>
+              </ion-col>
+              <ion-col width-33>
+                <ion-buttons end>
+                  <button ion-button outline>
+                    <ion-icon name="add"></ion-icon>
+                  </button>
+                </ion-buttons>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-col>
+
 </ion-content>
