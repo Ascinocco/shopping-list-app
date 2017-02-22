@@ -26,6 +26,12 @@ export class ShoppingListComponent
     this.newItem = { name: "", quantity: ""};
   }
 
+  public resetShoppingList()
+  {
+    this.newShoppingList = { title: "", items: [] };
+    this.newItem         = { name: "", quantity: "" };
+  }
+
   /** ******************** Shopping list crud ******************** **/
 
   public createShoppingList()
@@ -37,7 +43,7 @@ export class ShoppingListComponent
       }
 
       this.shoppingLists.push(newShoppingList);
-      this.newShoppingList = { title: "", items: [] };
+      this.resetShoppingList();
 
     } else {
       alert("Your shopping list must have a name!");
