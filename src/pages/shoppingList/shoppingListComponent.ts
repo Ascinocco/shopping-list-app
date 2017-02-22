@@ -37,13 +37,17 @@ export class ShoppingListComponent
     }
   }
 
-  public updateShoppingList()
+  public updateShoppingList(shoppingList)
   {
-
+    this.shoppingLists.update(shoppingList.$key, {
+      title: shoppingList.title,
+      items: shoppingList.items
+    });
   }
 
-  public deleteShoppingList()
+  public deleteShoppingList(shoppingList)
   {
-
+    this.shoppingLists.remove(shoppingList);
   }
+  
 }
